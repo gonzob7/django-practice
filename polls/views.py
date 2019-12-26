@@ -16,7 +16,7 @@ def index(request):
 '''views with question number you're currently on'''
 def detail(request, question_id):
     try:
-        question = Question.objects.get(pk="question_id")
+        question = Question.objects.get(pk=question_id)
     except Question.DoesNotExist:
         raise Http404("Error: Question does not exist")
 
