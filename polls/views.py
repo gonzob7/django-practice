@@ -15,9 +15,7 @@ def index(request):
 
 '''views with question number you're currently on'''
 def detail(request, question_id):
-    try:
-        question = Question.objects.get(pk=question_id)
-    except Question.DoesNotExist:
+        question = get_object_or_404(Question, pk=question_id)
         raise Http404("Error: Question does not exist")
 
     return render(request, 'polls/detail.html', {'question':question})
