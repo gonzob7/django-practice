@@ -5,8 +5,9 @@ from .models import Question
 
 
 def index(request):
-
-    return HttpResponse("Hello, world. You're at the polls index.")
+    latest_questions = Question.objects.order_by("-pub_date")[:5]
+    output = ', '.join([q.question_text for q in latest_questions])
+    return HttpResponse(output)
 
 '''views with question number you're currently on'''
 def detail(request, question_id):
